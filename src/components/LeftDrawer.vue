@@ -10,10 +10,11 @@
           <q-tab-panel name="tree">
             <div class="text-h6">Tree</div>
             Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            
           </q-tab-panel>
           <q-tab-panel name="components">
             <div class="text-h6">Components</div>
-
+            <div id="v-model1" draggable="true">przeciunk mnie</div>
 
 
           </q-tab-panel>

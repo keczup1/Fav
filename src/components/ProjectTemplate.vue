@@ -1,6 +1,6 @@
 <template>   
-  <q-intersection class="example-item col-6" id=template.id>
-      <q-card class="q-ma-sm" v-on:click="chooseTemplate(template.id)">
+  <q-intersection class="example-item col-6">
+      <q-card class="q-ma-sm" :id=template.id v-on:click="chooseTemplate(template.id)">
         <q-img :src=template.img></q-img>
         <q-card-section class="row">
           <q-card-section>
@@ -23,14 +23,9 @@
   },
   methods: {
     chooseTemplate(i) {
-
-      alert(i);
-      this.$store.dispatch("updateChosenTemplateIndex", i);
-      document.getElementById(this.template.id).style.border = "1px solid greenyellow";
+      this.$store.dispatch("chooseProject", i);
+      document.getElementById(i).style.border = "1px solid greenyellow";
     }
-  },
-  created() {
-    console.log(this.$slots);
   }
 }
 </script>

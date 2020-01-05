@@ -16,11 +16,18 @@
                     </q-card-actions>
                 </span>
             </q-img>
-            <q-card-section class="row">
-                <q-card-section>
-                    <div class="text-h6">{{ project.name }}</div>
-                    <div class="text-subtitle2">Last modification: {{ project.lastmodif }}</div>
-                </q-card-section>        
+            <q-card-section class="column">
+                <q-card-section class="row">
+                    <q-card-section>
+                        <div class="text-h6">{{ project.name }}</div>
+                        <div class="text-subtitle2">Last modification: {{ project.lastmodif }}</div>
+                    </q-card-section>        
+                </q-card-section>
+                <q-card-section class="row">
+                    <q-card-section>
+                        <router-link to="/editor"><q-btn flat color="grey-8" round icon="edit" @click="editProject(project.name)"/></router-link>
+                    </q-card-section>        
+                </q-card-section>
             </q-card-section>
         </q-card>
         <q-dialog v-model="deleteproject">
@@ -61,6 +68,12 @@
       return {
         deleteproject: false
       }
+  },
+  methods: {
+      editProject(name) {
+        alert(name);
+        this.$store.dispatch("chooseProject", name);
+    }
   }
 }
 </script>

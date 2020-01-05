@@ -1,6 +1,6 @@
 export default {
   state: {
-    chosenTemplateIndex: null,
+    chosenTemplateIndex: '0',
     templates: [{
         id: '1',
         name: 'Blank',
@@ -22,23 +22,51 @@ export default {
         name: 'Template 4',
         img: 'https://cdn.quasar.dev/img/mountains.jpg'
     }],
+    projects: [{
+      name: 'name 1',
+      published: true,
+      lastmodif: '13.09.2019'
+    }, {
+      name: 'name 2',
+      published: false,
+      lastmodif: '15.10.2019'
+    }, {
+      name: 'name 3',
+      published: false,
+      lastmodif: '01.11.2019'
+    }, {
+      name: 'name 4',
+      published: false,
+      lastmodif: '02.01.2019'
+    }, {
+      name: 'name 5',
+      published: false,
+      lastmodif: '17.06.2019'
+    }, {
+      name: 'name 6',
+      published: false,
+      lastmodif: '12.06.2019'
+    }],
   },
   mutations: {
-    updateChosenTemplateIndex: (state, index) => {
+    updateChosenIndex: (state, index) => {
       state.chosenTemplateIndex = index;
     }  
   },
   getters: {
-    getChosenTemplateIndex: state => {
+    getChosenIndex: state => {
       return state.chosenTemplateIndex;
     },
     getTemplateList: state => {
       return state.templates;
+    },
+    getProjectList: state => {
+      return state.projects;
     }
   },
   actions: {
-    chooseTemplate: function(context, chosenIndex) {
-      this.commit("updateChosenTemplateIndex", chosenIndex);
+    chooseProject: function(context, chosenIndex) {
+      this.commit("updateChosenIndex", chosenIndex);
     }
   }
 }
