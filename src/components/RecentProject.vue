@@ -1,7 +1,7 @@
 <template>
     <q-intersection class="example-item col-6">
         <q-card class="q-ma-sm" v-bind:style="[project.published ? {'border': '1px solid greenyellow'} : {'border': '1px solid black'}]">
-            <q-img src="https://cdn.quasar.dev/img/mountains.jpg">
+            <q-img >
             
                 <div class="absolute-top text-subtitle2 text-left row" style="color: greenyellow; font-size: 12px;"  v-if="project.published">Published</div>
                 <div class="absolute-top text-subtitle2 text-left" style="color: black; font-size: 12px;"  v-else>Not published</div>

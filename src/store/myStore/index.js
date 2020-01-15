@@ -1,6 +1,5 @@
 export default {
   state: {
-    chosenTemplateIndex: '0',
     templates: [{
         id: '1',
         name: 'Blank',
@@ -49,14 +48,9 @@ export default {
     }],
   },
   mutations: {
-    updateChosenIndex: (state, index) => {
-      state.chosenTemplateIndex = index;
-    }  
+
   },
   getters: {
-    getChosenIndex: state => {
-      return state.chosenTemplateIndex;
-    },
     getTemplateList: state => {
       return state.templates;
     },
@@ -65,8 +59,6 @@ export default {
     }
   },
   actions: {
-    chooseProject: function(context, chosenIndex) {
-      this.commit("updateChosenIndex", chosenIndex);
-    }
+    
   }
 }

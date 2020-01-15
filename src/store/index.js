@@ -1,13 +1,12 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import templates from './templates'
+import myStore from './myStore'
+import current from './current'
 Vue.use(Vuex);
-/*
-* If not building with SSR mode, you can
-* directly export the Store instantiation
-*/
+
 export default new Vuex.Store({
     modules: {
-        templates
+        myStore,
+        current
     }
 });

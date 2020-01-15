@@ -14,7 +14,7 @@
           </q-tab-panel>
           <q-tab-panel name="components">
             <div class="text-h6">Components</div>
-            <div id="v-model1" draggable="true">przeciunk mnie</div>
+            <div id="v-model1" draggable="true"><q-btn color="primary" label="Primary" /></div>
 
 
           </q-tab-panel>
