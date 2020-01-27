@@ -3,6 +3,8 @@
 
 module.exports = function (ctx) {
   return {
+      runtimeCompiler: true,
+    
     // app boot file (/src/boot)
     // --> boot files are part of "main.js"
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
@@ -62,7 +64,7 @@ module.exports = function (ctx) {
       // extractCSS: false,
 
       // https://quasar.dev/quasar-cli/cli-documentation/handling-webpack
-      extendWebpack (cfg) {
+      extendWebpack (cfg) {        
         cfg.module.rules.push({
           enforce: 'pre',
           test: /\.(js|vue)$/,

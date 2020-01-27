@@ -4,7 +4,7 @@
         <q-header elevated class="bg-primary text-white">
             <q-toolbar>
                 <q-toolbar-title class="text-subtitle2">
-                    <router-link to="/">
+                    <router-link to="/profile">
                         <q-avatar>
                             <img src="https://cdn.quasar.dev/img/avatar.png" />
                         </q-avatar> 
@@ -14,7 +14,7 @@
 
                 <q-btn-dropdown auto-close stretch flat icon="build" label="Settings">
                     <q-list bordered padding class="text-primary">
-                        <q-item clickable>
+                        <q-item to="/profile">
                             <q-item-section avatar>
                                 <q-icon name="perm_identity"/>
                             </q-item-section>

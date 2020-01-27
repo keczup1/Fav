@@ -25,7 +25,7 @@
                 </q-card-section>
                 <q-card-section class="row">
                     <q-card-section>
-                        <router-link to="/editor"><q-btn flat color="grey-8" round icon="edit" @click="editProject(project.name)"/></router-link>
+                        <router-link to="/editor"><q-btn flat color="grey-8" round icon="edit" @click="editProject(project.id)"/></router-link>
                     </q-card-section>        
                 </q-card-section>
             </q-card-section>
@@ -59,6 +59,7 @@
   name: 'RecentProject',
   props: {
     project: {
+      id: String,
       name: String,
       published: Boolean,
       lastmodif: String
@@ -70,9 +71,8 @@
       }
   },
   methods: {
-      editProject(name) {
-        alert(name);
-        this.$store.dispatch("chooseProject", name);
+      editProject(id) {
+        this.$store.dispatch("chooseProject", id);
     }
   }
 }

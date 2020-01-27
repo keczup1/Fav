@@ -6,10 +6,10 @@
         <q-btn dense flat round icon="menu" @click="left = !left" />
 
         <q-toolbar-title>
-          <q-avatar @click="right = !right" >
-            <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
-          </q-avatar>
-          {{this.$store.getters.getChosenIndex}}
+          <router-link to="/home">
+            <q-btn dense flat round icon="home" color="white"/>
+          </router-link>
+          {{this.$store.getters.getProjectByID(this.chosenIndex).name}}
         </q-toolbar-title>
         <q-btn-dropdown id="addCell" class="absolute-center" flat :disable="disable" color="white" icon="add" label="Insert cell">
           <q-tooltip anchor="center left" self="center right" :offset="[10, 10]">Add new cell below, above or next to existing one</q-tooltip>
@@ -37,6 +37,7 @@
           </q-list>
         </q-btn-dropdown>
 
+        <q-btn class="q-mr-lg" color="purple" label="Publish" />
         <q-btn dense flat round id="mode" :icon="Icon" @click="changeMode"/>
       </q-toolbar>
     </q-header>
@@ -70,15 +71,19 @@ export default {
       left: false,
       right: false,
       Icon: "smartphone",
-      disable: false
+      disable: false,
+      chosenIndex: "0"
     }
   },
   mounted() {
-    dragAndDrop()
+    dragAndDrop(),
+    this.chosenIndex = this.$store.getters.getChosenIndex;
+    var tempProject = this.$store.getters.getProjectByID(this.chosenIndex);
+    this.$store.dispatch("currentProjectUpdate", tempProject);
   },
   computed: {
-    templateIndex() {
-      return this.$store.getters.getChosenIndex;      
+    loadproject() {
+      return this.$store.getters.getProjectByID(this.chosenIndex);
     }
   },
   methods: {
@@ -99,4 +104,6 @@ export default {
     }
   }
 }
+
+
 </script>

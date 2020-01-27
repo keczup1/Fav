@@ -1,5 +1,5 @@
 export default function(parentId, elementTag, elementId, html) {    
-    var p = document.getElementById(parentId).childNodes[0];
+    var p = document.getElementById(parentId);
     var newElement = document.createElement(elementTag);
     newElement.setAttribute('id', elementId);
     newElement.setAttribute('class', "droptarget");

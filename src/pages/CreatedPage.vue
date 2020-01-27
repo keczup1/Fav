@@ -1,43 +1,66 @@
 <template>
   <q-page class="row window-height window-width justify-center items-center" style="min-height:100%; height:100%; width: 100% !important;">
     <q-scroll-area id="createdweb" class="bg-white" style="height: 100%; width: 100%;">
-      <div id="div1" class="droptarget" v-on:dblclick="test" @click="testing"></div>
-      <div id="div2" class="droptarget" v-on:dblclick="test"></div>
-      <template v-for="(child, index) in childre" v-bind:index="index">
-        <component :is="child" :key="index"></component>
+      <template v-for="(child, index) in children" v-bind:index="index">
+        <component :is="child" :key="index" v-on:click="test"></component>
       </template>
     </q-scroll-area>
   </q-page>
 </template>
-
+<script src="system.js"></script>
 <script>
+import Vue from 'vue'
 import DivDroptarget from '../components/elements/DivDroptarget.vue'
+import {bus} from '../bus'
+import DComponent from '../components/elements/DComponent.vue'
 export default {
+  components: {
+    DComponent
+  },
   data() {
     return {
-    }
-  },
-  computed: {
-    childre() {    
-      return this.$store.getters.getComponent;
+      chosenIndex: '0'
     }
   },
   mounted() {
     this.$root.$on('addNewDrop', this.addDroptarget);
-    console.log(this.childre);
-    console.log(this.$store);
+    bus.$on('componentData', this.createElement);
+    this.chosenIndex = this.$store.getters.getChosenIndex;
+    
+  },
+  computed: {
+    children() {
+      return this.$store.getters.getComponent;
+    },
+    
   },
   methods: {
-    testing() {
-      alert("try");
-      alert(this.$store.getters.getComponent);
+    createElement(data) {
+        while((document.getElementById(data.id)==null) || data.id==null){
+            return;
+        }
+        var id=data.id;
+        var compName=data.name;
+        var ComponentCtor = Vue.extend(DComponent);
+        var componentInstance = new ComponentCtor({propsData: {
+           path: ''
+        },
+        });
+        componentInstance.path=this.resolvePath(compName);
+        componentInstance.$mount('#'+id);
+
+    },
+    resolvePath(compname){
+      compname += '.vue';
+      var path=compname;
+      return path; 
     },
      addDroptarget() {
-       alert("x");
-      this.childre.push(DivDroptarget);
+      this.children.push(DivDroptarget);
     },
     test: function() {
-      event.target.style.border = "1px solid black";
+      alert(event.target.id);
+      //event.target.style.border = "1px solid black";
     },
     changeMode: function() {
       if(this.Icon == "laptop") {

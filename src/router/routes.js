@@ -21,6 +21,10 @@ const routes = [
     component: () => import('layouts/Register.vue')
   },
   {
+    path: '/profile',
+    component: () => import('layouts/YourProfile.vue')
+  },
+  {
     path: '/editor',
     component: () => import('layouts/Editor.vue'),
     children: [

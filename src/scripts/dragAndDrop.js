@@ -1,4 +1,10 @@
+import randomID from "./randomID"
+import store from '../store/myStore'
+import addComponent from './addComponent'
+import { bus } from '../bus'
 export default function() {
+
+ 
     //drag and drop
 
 document.addEventListener("dragenter", function(event) {
@@ -16,12 +22,24 @@ document.addEventListener("dragenter", function(event) {
   document.addEventListener("dragstart", function(event) {
     event.dataTransfer.setData("Text", event.target.id);
     event.target.style.opacity = "0.4";
-    document.getElementsByClassName('droptarget')[0].style.backgroundColor="#e6ffe6";
+    var list, i;
+    list = document.getElementsByClassName('droptarget');
+    for (i = 0; i < list.length; ++i) {
+      list[i].style.backgroundColor="#e6ffe6";
+      list[i].style.border = "1px solid #cccccc";
+    }
+    //document.getElementsByClassName('droptarget')[0].style.backgroundColor="#e6ffe6";
   });
 
   document.addEventListener("dragend", function(event) {
   event.target.style.opacity = "1";
-  document.getElementsByClassName('droptarget')[0].style.backgroundColor="";
+  var list, i;
+  list = document.getElementsByClassName('droptarget');
+  for (i = 0; i < list.length; ++i) {
+    list[i].style.backgroundColor="";
+    list[i].style.border="";
+  }
+  //document.getElementsByClassName('droptarget')[0].style.backgroundColor="";
   });
 
   document.addEventListener("dragover", function(event) {
@@ -34,14 +52,29 @@ document.addEventListener("dragenter", function(event) {
       event.target.style.border = "";
       var data = event.dataTransfer.getData("Text");
       document.getElementById(data).style.opacity = "1";
-      if(data!="clone"){
+      var components=store.state.components;
+      for(var i=0; i<components.length; i++) {
+        if(components[i].id_comp==data) {
+          var comp = components[i];
+        }
+      }
+      var html = '<div>try</div>';
+      var newID = randomID();
+      addComponent(event.target.id, 'div', newID, html);
+      var compName=comp.templateName;
+      //alert(document.getElementById(newID).id);
+      //alert(newID);
+      //alert(compName);
+      bus.$emit('componentData', {'id':newID, 'name':compName});
+      /*if(data!='clone'){
       var clone = document.getElementById(data).cloneNode(true);
-      clone.setAttribute("id", "clone");
+      
+      clone.setAttribute("id", newID);
       event.target.appendChild(clone);
       }
       else{
       	event.target.appendChild(document.getElementById(data));
-      }
+      }*/
     }
   });
 }
