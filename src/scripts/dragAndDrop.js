@@ -28,7 +28,6 @@ document.addEventListener("dragenter", function(event) {
       list[i].style.backgroundColor="#e6ffe6";
       list[i].style.border = "1px solid #cccccc";
     }
-    //document.getElementsByClassName('droptarget')[0].style.backgroundColor="#e6ffe6";
   });
 
   document.addEventListener("dragend", function(event) {
@@ -39,7 +38,6 @@ document.addEventListener("dragenter", function(event) {
     list[i].style.backgroundColor="";
     list[i].style.border="";
   }
-  //document.getElementsByClassName('droptarget')[0].style.backgroundColor="";
   });
 
   document.addEventListener("dragover", function(event) {
@@ -62,19 +60,7 @@ document.addEventListener("dragenter", function(event) {
       var newID = randomID();
       addComponent(event.target.id, 'div', newID, html);
       var compName=comp.templateName;
-      //alert(document.getElementById(newID).id);
-      //alert(newID);
-      //alert(compName);
       bus.$emit('componentData', {'id':newID, 'name':compName});
-      /*if(data!='clone'){
-      var clone = document.getElementById(data).cloneNode(true);
-      
-      clone.setAttribute("id", newID);
-      event.target.appendChild(clone);
-      }
-      else{
-      	event.target.appendChild(document.getElementById(data));
-      }*/
     }
   });
 }

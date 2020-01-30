@@ -26,40 +26,36 @@ export default {
       name: 'name 1',
       published: true,
       lastmodif: '13.09.2019',
-      structure: [{
-        name: 'Home',
-        componentList: [{
-          id: 'adg',
-          templateName: 'Header1',
-          properties: {
-            label: "Sample header",
-            myclass: "text-h4 q-pa-md text-center"
-            }          
-          }, {
-          id: 'fgh',
-          templateName: 'Paragraph1',
-          properties: {
-            text: "Template paragraph to show you how it looks like. We are here to help you create your website. Enjoy!",
-            myclass: "q-pa-md"  
-            }            
-          }, {
-          id: 'abc',
-          templateName: 'Button1',
-          properties: {
-            label: "Button",
-            color: "primary",
-            size: "md",
-            myclass: "q-pa-md",
-            mystyle: "display: inline-block; float: right;",
-            mycompclass: "q-pa-md",
-            mycompstyle: ""
-            }
-          }]
+      componentList: [{
+        id: 'adg',
+        templateName: 'Header1',
+        name: 'My header 1',
+        properties: {
+          label: "Sample header",
+          myclass: "text-h4 q-pa-md text-center"
+          }          
         }, {
-        name: 'Contact',
-        componentList: []
-        }
-      ]
+        id: 'fgh',
+        templateName: 'Paragraph1',
+        name: 'My first paragraph',
+        properties: {
+          text: "Template paragraph to show you how it looks like. We are here to help you create your website. Enjoy!",
+          myclass: "q-pa-md"  
+          }            
+        }, {
+        id: 'abc',
+        templateName: 'Button1',
+        name: 'Some button',
+        properties: {
+          label: "Button",
+          color: "primary",
+          size: "md",
+          myclass: "q-pa-md",
+          mystyle: "display: inline-block; float: right;",
+          mycompclass: "q-pa-md",
+          mycompstyle: ""
+          }
+        }]
     }, {
       id: 'twhfbsdif',
       name: 'name 2',

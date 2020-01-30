@@ -51,7 +51,7 @@
     </q-drawer>
 
     <q-page-container>
-      <router-view />
+      <CreatedPage />
     </q-page-container>
 
   </q-layout>
@@ -60,11 +60,13 @@
 <script>
 import LeftDrawer from '../components/LeftDrawer.vue'
 import RightDrawer from '../components/RightDrawer.vue'
+import CreatedPage from '../pages/CreatedPage.vue'
 import dragAndDrop from "../scripts/dragAndDrop"
 export default {
   components: {
       LeftDrawer,
-      RightDrawer
+      RightDrawer,
+      CreatedPage
     },
   data () {
     return {

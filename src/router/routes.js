@@ -26,10 +26,7 @@ const routes = [
   },
   {
     path: '/editor',
-    component: () => import('layouts/Editor.vue'),
-    children: [
-      { path: '', component: () => import('pages/CreatedPage.vue')}
-    ]
+    component: () => import('layouts/Editor.vue')
   }
 ]
 
