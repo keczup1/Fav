@@ -31,29 +31,29 @@ export default {
         templateName: 'Header1',
         name: 'My header 1',
         properties: {
-          label: "Sample header",
-          myclass: "text-h4 q-pa-md text-center"
+          text: "My first web page!",
+          //myclass: "text-h4 q-pa-md text-center"
           }          
         }, {
         id: 'fgh',
         templateName: 'Paragraph1',
         name: 'My first paragraph',
         properties: {
-          text: "Template paragraph to show you how it looks like. We are here to help you create your website. Enjoy!",
-          myclass: "q-pa-md"  
+          text: "Marvelous example of created page.",
+          //myclass: "q-pa-md"  
           }            
         }, {
         id: 'abc',
         templateName: 'Button1',
         name: 'Some button',
         properties: {
-          label: "Button",
+          text: "Click!",
           color: "primary",
           size: "md",
-          myclass: "q-pa-md",
-          mystyle: "display: inline-block; float: right;",
-          mycompclass: "q-pa-md",
-          mycompstyle: ""
+          //myclass: "q-pa-md",
+          //mystyle: "display: inline-block; float: right;",
+          //mycompclass: "q-pa-md",
+          //mycompstyle: ""
           }
         }]
     }, {
@@ -97,6 +97,31 @@ export default {
       id_comp: 'b1',
       name: 'Button 1',
       templateName: 'Button1'
+    }],
+    propertiesResolve: [{
+      color: 'enum',
+      enumList: ['primary', 'secondary', 'red',
+        'pink', 'purple', 'deep-purple', 'indigo',
+        'blue', 'cyan', 'teal', 'green', 'light-green',
+        'lime', 'yellow', 'amber', 'orange', 'deep-orange',
+        'brown', 'grey', 'blue-grey']
+    }, {
+      text_style: 'enum',
+      enumList: ['text-h2', 'text-h3', 'text-h4', 'text-h5', 
+        'text-h6', 'text-subtitle1', 'text-subtitle2', 
+        'text-body1', 'text-body2', 'text-caption', 'text-overline'] 
+    }, {
+      text: 'string'
+    }, {
+      padding: 'enum',
+      enumList: ['q-pa-sm', 'q-pa-md', 'p-pa-lg', 'q-px-sm', 'q-px-md',
+        'q-px-lg', 'q-py-sm', 'q-py-md', 'q-py-lg']
+    }, {
+      size: 'enum',
+      enumList: ['xs', 'sm', 'md', 'lg', 'xl']
+    }, {
+      text_align: 'enum',
+      enumList: ['text-right', 'text-left', 'text-center']
     }]
   },
   mutations: {
@@ -114,6 +139,9 @@ export default {
     },
     getProjectByID: (state) => (id) => {
       return state.projects.find(project => project.id === id)
+    },
+    getPropertiesTypes: state => {
+      return state.propertiesResolve;
     }
   },
   actions: {

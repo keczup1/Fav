@@ -14,7 +14,7 @@
               <q-list dense bordered padding class="rounded-borders">
                 <q-item clickable v-ripple
                 v-for="(component, index) in this.$store.getters.getCurrentProject.componentList" v-bind:component="component" v-bind:index="index" v-bind:key="component.name">
-                  <q-item-section>
+                  <q-item-section v-on:click="sendID(component.id)">
                     {{component.name}}
                   </q-item-section>
                 </q-item>
@@ -37,7 +37,7 @@
 </template>
 
 <script>
-
+import { bus } from '../bus'
 export default {
   data () {
     return {
@@ -48,6 +48,12 @@ export default {
   computed: {
     currproject() {
       return this.$store.getters.getCurrentProject;
+    }
+  },
+  methods: {
+    sendID(id) {
+      alert(id);
+      bus.$emit('ChosenCompID', {'id':id});
     }
   }
 }

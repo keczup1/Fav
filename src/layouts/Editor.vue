@@ -78,7 +78,7 @@ export default {
     }
   },
   mounted() {
-    dragAndDrop(),
+    dragAndDrop();
     this.chosenIndex = this.$store.getters.getChosenIndex;
     var tempProject = this.$store.getters.getProjectByID(this.chosenIndex);
     this.$store.dispatch("currentProjectUpdate", tempProject);

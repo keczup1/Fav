@@ -21,6 +21,7 @@ import randomID from "../scripts/randomID"
 import {bus} from '../bus'
 import DComponent from '../components/elements/DComponent.vue'
 import addComponent from '../scripts/addComponent'
+import randomID from '../scripts/randomID'
 export default {
   components: {
     DComponent,
@@ -35,9 +36,12 @@ export default {
     }
   },
   mounted() {
+    //dodanie nowego DivDroptarget
     this.$root.$on('addNewDrop', this.addDroptarget);
+    //dodanie elementu po DragandDrop
     bus.$on('componentData', this.createElement);
     this.chosenIndex = this.$store.getters.getChosenIndex; 
+    //render projektu
     this.$root.$on('addCompList', this.addNewComp);
   },
   computed: {
@@ -48,7 +52,6 @@ export default {
   },
   methods: {
     addNewComp() {
-      alert("x");
       var html = '<div>try</div>';      
       var componentArray = this.$store.getters.getCurrentProject.componentList;
       alert (JSON.stringify(componentArray));
@@ -56,12 +59,11 @@ export default {
       for (var i = 0; i < componentArray.length; i++) {
         alert(JSON.stringify(componentArray[i]));
         var id=componentArray[i].id;
-        alert(id);
         var name=componentArray[i].templateName;
-        alert(name);
-        alert(html);
-        addComponent('renderdiv', 'div', id, html);
-        this.createElement({'id':id, 'name':name});
+        var props=componentArray[i].properties;
+        var newID = randomID();
+        addComponent('renderdiv', 'div', newID, html);
+        this.createElement({'id':id, 'name':name, 'props':props});
       }
     },
     createElement(data) {
@@ -70,10 +72,11 @@ export default {
         }
         var id=data.id;
         var compName=data.name;
+        var properties = data.props;
+        alert("my properties "+JSON.stringify(properties));
         var ComponentCtor = Vue.extend(DComponent);
-        var componentInstance = new ComponentCtor({propsData: {
-           path: ''
-        },
+        var componentInstance = new ComponentCtor({
+          propsData: {properties: properties, path: ''},
         });
         componentInstance.path=this.resolvePath(compName);
         componentInstance.$mount('#'+id);

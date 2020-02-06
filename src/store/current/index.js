@@ -1,8 +1,8 @@
 export default {
     state: {
       chosenTemplateIndex: '0',
-      currentComponentdrop: '',
-      currentProject: {}
+      currentProject: {},
+      chosenComponentID: ''
     },
     mutations: {
       updateChosenIndex: (state, index) => {
@@ -10,17 +10,20 @@ export default {
       },
       updateCurrentProject: (state, project) => {
         state.currentProject = project;
+      },
+      updateChosenComponentID: (state, id) => {
+        state.chosenComponentID = id;
       }
     },
     getters: {
       getChosenIndex: state => {
         return state.chosenTemplateIndex;
       },
-      getCurrentCompDrop: state => {
-        return state.currentComponentdrop;
-      },
       getCurrentProject: state => {
         return state.currentProject;
+      },
+      getChosenComponentID: state => {
+        return state.chosenComponentID;
       }
     },
     actions: {
@@ -29,6 +32,9 @@ export default {
       },
       currentProjectUpdate: function(context, chosenProject) {
         this.commit("updateCurrentProject", chosenProject);
+      },
+      chooseComponentID: function(context, chosenCompID) {
+        this.commit("updateChosenComponentID", chosenCompID);
       }
     }
   }

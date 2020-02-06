@@ -60,7 +60,7 @@ document.addEventListener("dragenter", function(event) {
       var newID = randomID();
       addComponent(event.target.id, 'div', newID, html);
       var compName=comp.templateName;
-      bus.$emit('componentData', {'id':newID, 'name':compName});
+      bus.$emit('componentData', {'id':newID, 'name':compName, 'props':''});
     }
   });
 }
