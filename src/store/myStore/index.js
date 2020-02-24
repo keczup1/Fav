@@ -3,23 +3,49 @@ export default {
     templates: [{
         id: '1',
         name: 'Blank',
-        img: 'https://cdn.quasar.dev/img/mountains.jpg'
+        img: 'https://cdn.quasar.dev/img/mountains.jpg',
+        componentList: []
     }, {
         id: '2',
         name: 'Template 1',
-        img: 'https://cdn.quasar.dev/img/mountains.jpg'
+        img: 'https://cdn.quasar.dev/img/mountains.jpg',
+        componentList: [{
+          id: 'utjdhaj',
+          templateName: 'Header1',
+          name: 'The great header',
+          properties: {
+            text: "Hello great project!"
+            }          
+          }, {
+          id: 'ncdjs',
+          templateName: 'Paragraph1',
+          name: 'The first paragraph',
+          properties: {
+            text: "This web page is going to be amazing. First some info about the page. It is a template page. Do not bother."
+            }            
+          }, {
+          id: 'lkfgos',
+          templateName: 'Paragraph1',
+          name: 'The second paragraph',
+          properties: {
+            text: "Some other info about this amazing page. It is still under construction but it will be done soon."
+            }
+          }]
     }, {
         id: '3',
         name: 'Template 2',
-        img: 'https://cdn.quasar.dev/img/mountains.jpg'
+        img: 'https://cdn.quasar.dev/img/mountains.jpg',
+        componentList: []
     }, {
         id: '4',
         name: 'Template 3',
-        img: 'https://cdn.quasar.dev/img/mountains.jpg'
+        img: 'https://cdn.quasar.dev/img/mountains.jpg',
+        componentList: []
     }, {
         id: '5',
         name: 'Template 4',
-        img: 'https://cdn.quasar.dev/img/mountains.jpg'
+        img: 'https://cdn.quasar.dev/img/mountains.jpg',
+        componentList: []
     }],
     projects: [{
       id: 'asdfhj',
@@ -60,27 +86,32 @@ export default {
       id: 'twhfbsdif',
       name: 'name 2',
       published: false,
-      lastmodif: '15.10.2019'
+      lastmodif: '15.10.2019',
+      componentList: []
     }, {
       id: 'tefjhzxcnpb',
       name: 'name 3',
       published: false,
-      lastmodif: '01.11.2019'
+      lastmodif: '01.11.2019',
+      componentList: []
     }, {
       id: 'ewjvjxovg',
       name: 'name 4',
       published: false,
-      lastmodif: '02.01.2019'
+      lastmodif: '02.01.2019',
+      componentList: []
     }, {
       id: 'gdusebfvkx',
       name: 'name 5',
       published: false,
-      lastmodif: '17.06.2019'
+      lastmodif: '17.06.2019',
+      componentList: []
     }, {
       id: 'dfbhcvyo',
       name: 'name 6',
       published: false,
-      lastmodif: '12.06.2019'
+      lastmodif: '12.06.2019',
+      componentList: []
     }],
     components: [{
       src: 'statics/header1.png',
@@ -125,7 +156,39 @@ export default {
     }]
   },
   mutations: {
-
+    addNewProject: (state, project) => {
+      state.projects.push(project);
+    },
+    addNewComponent: (state, payload) => {
+      const { id, component} = payload
+      const i = state.projects.map(project => project.id).indexOf(id);
+      state.projects[i].componentList.push(component);
+    },
+    publish: (state, payload) => {
+      const { id, published} = payload
+      const project = state.projects.find(p => p.id === id)
+      project.published = published
+    },
+    updateLastModifiaction: (state, payload) => {
+      const { id, lastmod} = payload
+      const project = state.projects.find(p => p.id === id)
+      project.lastmodif = lastmod
+    },
+    updateProjectName: (state, payload) => {
+      const { id, name } = payload
+      const project = state.projects.find(p => p.id === id)
+      project.name = name
+    },
+    updateCompName: (state, payload) => {
+      const { projID, compID, name} = payload
+      const project = state.projects.find(p => p.id === projID)
+      const component = project.componentList.find(c => c.id === compID)
+      component.name = name
+    },
+    removeProject: (state, id) => {
+      const i = state.projects.map(proj => proj.id).indexOf(id);
+      state.projects.splice(i, 1);
+    }
   },
   getters: {
     getTemplateList: state => {
@@ -140,11 +203,34 @@ export default {
     getProjectByID: (state) => (id) => {
       return state.projects.find(project => project.id === id)
     },
+    getTemplateByID: (state) => (id) => {
+      return state.templates.find(template => template.id === id)
+    },
     getPropertiesTypes: state => {
       return state.propertiesResolve;
     }
   },
   actions: {
-    
+    addProject: function(context, newproject) {
+      this.commit("addNewProject", newproject);
+    },
+    addNewComponent: function(context, payload) {
+      this.commit("addNewComponent", payload);
+    },
+    publishProject: function(context, payload) {
+      this.commit("publish", payload);
+    },
+    updateLastModifiaction: function(context, payload) {
+      this.commit("updateLastModifiaction", payload);
+    },
+    updateProjectName: function(context, payload) {
+      this.commit("updateProjectName" , payload)
+    },
+    updateComponentName: function(context, payload) {
+      this.commit("updateCompName", payload)
+    },
+    deleteProject: function(context, id) {
+      this.commit("removeProject", id);
+    }
   }
 }

@@ -13,9 +13,26 @@
             <div class="q-pa-xs" style="max-width: 350px">
               <q-list dense bordered padding class="rounded-borders">
                 <q-item clickable v-ripple
-                v-for="(component, index) in this.$store.getters.getCurrentProject.componentList" v-bind:component="component" v-bind:index="index" v-bind:key="component.name">
+                v-for="(component, index) in currproject.componentList" v-bind:component="component" v-bind:index="index" v-bind:key="component.name">
                   <q-item-section v-on:click="sendID(component.id)">
-                    {{component.name}}
+                    {{component.name}}   
+                    <q-btn dense flat round icon="edit" color="primary" @click="openDialog(component.id)"/>
+                    <q-dialog v-model="changeNameDialog" persistent>
+                      <q-card style="min-width: 350px">
+                        <q-card-section>
+                          <div class="text-h6">Change the name of the component</div>
+                        </q-card-section>
+
+                        <q-card-section class="q-pt-none">
+                          <q-input dense v-model="componentName" autofocus @keyup.enter="changeNameDialog = false" />
+                        </q-card-section>
+
+                        <q-card-actions align="right" class="text-primary">
+                          <q-btn flat label="Cancel" v-close-popup />
+                          <q-btn flat label="Change component name" v-close-popup @click="changeCompName(compID)"/>
+                        </q-card-actions>
+                      </q-card>
+                    </q-dialog>                 
                   </q-item-section>
                 </q-item>
               </q-list>
@@ -42,7 +59,10 @@ export default {
   data () {
     return {
       tab: 'tree',
-      componentsList: this.$store.getters.getComponents
+      componentsList: this.$store.getters.getComponents,
+      componentName: '',
+      changeNameDialog: false,
+      compID: ''
     }
   },
   computed: {
@@ -52,8 +72,24 @@ export default {
   },
   methods: {
     sendID(id) {
-      alert(id);
+      this.compID=id;
+      var components = document.querySelectorAll('.component');
+      Array.prototype.forEach.call(components, function(element) {
+          element.style.border = ""
+      });
+      document.getElementById(id).style.border = "1px solid black";
       bus.$emit('ChosenCompID', {'id':id});
+    },
+    changeCompName: function(compID) {
+      if(compID!='') {
+        this.$store.dispatch("updateComponentName", {projID: this.currproject.id, compID: compID, name: this.componentName});
+        this.compID='';
+      }
+
+    },
+    openDialog: function(id) {
+      this.changeNameDialog=true;
+      this.compID = id;
     }
   }
 }

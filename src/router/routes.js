@@ -27,6 +27,10 @@ const routes = [
   {
     path: '/editor',
     component: () => import('layouts/Editor.vue')
+  },
+  {
+    path: '/published/:id',
+    component: () => import('layouts/PublishedPage.vue')
   }
 ]
 

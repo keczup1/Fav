@@ -2,7 +2,8 @@ export default {
     state: {
       chosenTemplateIndex: '0',
       currentProject: {},
-      chosenComponentID: ''
+      chosenComponentID: '',
+      divDroptargetID: ''
     },
     mutations: {
       updateChosenIndex: (state, index) => {
@@ -13,6 +14,9 @@ export default {
       },
       updateChosenComponentID: (state, id) => {
         state.chosenComponentID = id;
+      },
+      updateDivDroptargetID: (state, id) => {
+        state.divDroptargetID = id;
       }
     },
     getters: {
@@ -24,6 +28,9 @@ export default {
       },
       getChosenComponentID: state => {
         return state.chosenComponentID;
+      },
+      getCurrentDivDroptargetID: state => {
+        return state.divDroptargetID;
       }
     },
     actions: {
@@ -35,6 +42,9 @@ export default {
       },
       chooseComponentID: function(context, chosenCompID) {
         this.commit("updateChosenComponentID", chosenCompID);
+      },
+      updateDroptargetID: function(context, DivDropID) {
+        this.commit("updateDivDroptargetID", DivDropID);
       }
     }
   }

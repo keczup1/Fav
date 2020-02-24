@@ -9,8 +9,8 @@
           <q-btn icon="close" flat round dense v-close-popup />
           </q-card-section>
 
-          <q-card-section>
-            <div class="q-pa-md row">              
+          <q-card-section class="q-pa-md">
+            <div class="row justify-center q-gutter-sm">              
                 <ProjectTemplate v-for="template in this.$store.getters.getTemplateList" v-bind:template="template" v-bind:key="template.name"/>
             </div>
           </q-card-section>
@@ -31,8 +31,8 @@
     </p>
     <q-separator inset />
     
-    <div>
-      <div class="q-pa-md row items-start q-gutter-md justify-around float-left">
+    <div class="q-pa-md">
+      <div class="row justify-center q-gutter-sm">
         <RecentProject v-for="(project, index) in this.$store.getters.getProjectList" v-bind:project="project" v-bind:index="index" v-bind:key="project.name"/>  
       </div>
     </div>

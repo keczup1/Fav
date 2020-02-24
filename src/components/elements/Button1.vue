@@ -1,6 +1,6 @@
 <template>
   <div :class="myclass" :style="mystyle">
-    <q-btn :class="mycompclass" :style="mycompstyle" :color="color" :label="label" :size="size" :id="createID"/>
+    <q-btn :class="mycompclass" :style="mycompstyle" :color="color" :label="label" :size="size"/>
   </div>
 </template>
 

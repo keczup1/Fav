@@ -1,5 +1,5 @@
 <template>
-    <div :class="myclass" :id="createID">{{label}}</div>
+    <div :class="myclass">{{label}}</div>
 </template>
 
 <script>

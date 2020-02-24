@@ -1,6 +1,6 @@
 <template>   
-  <q-intersection class="example-item col-6">
-      <q-card class="q-ma-sm" :id=template.id v-on:click="chooseTemplate(template.id)">
+  <q-intersection class="example-item">
+      <q-card class="q-ma-sm template" :id=template.id v-on:click="chooseTemplate(template.id)">
         <q-img :src=template.img></q-img>
         <q-card-section class="row">
           <q-card-section>
@@ -24,6 +24,10 @@
   methods: {
     chooseTemplate(i) {
       this.$store.dispatch("chooseProject", i);
+      var alltemplates = document.querySelectorAll('.template');
+      Array.prototype.forEach.call(alltemplates, function(element) {
+          element.style.border = ""
+      });
       document.getElementById(i).style.border = "1px solid greenyellow";
     }
   }

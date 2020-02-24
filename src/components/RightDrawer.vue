@@ -32,7 +32,6 @@ export default {
     computed: {
        /* getchosenComponentID() {
             this.$root.$on('ChosenCompID', this.updateCompID);
-            //alert("ojaa "+ this.$store.getters.getChosenComponentID);
             //return this.$store.getters.getChosenComponentID;
             return 1;
         }*/
@@ -40,12 +39,9 @@ export default {
     methods: {
         updateCompID(IDdata) {
             var id = IDdata.id;
-            alert("x ");
-            alert("ojejku " + id);
             this.chosenID=id;
         },
         showProperties() {
-            alert("abc");
         }
     }
 }
