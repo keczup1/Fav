@@ -101,7 +101,6 @@ export default {
       carousel: false,
 
       slide: 1,
-      lorem: 'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Natus, ratione eum minus fuga, quasi dicta facilis corporis magnam, suscipit at quo nostrum!'
     }
   }
 }

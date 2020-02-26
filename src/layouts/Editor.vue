@@ -130,7 +130,8 @@ export default {
       tempProject=this.$store.getters.getTemplateByID(this.chosenIndex);
       tempProject.published = false;
       tempProject.lastmodif = this.getTodayDate();
-      tempProject.id=randomID();
+      tempProject.id=randomID();    
+      this.chosenIndex=tempProject.id;
       this.$store.dispatch("addProject", tempProject);
     }
     else {
